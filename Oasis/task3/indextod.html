@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+   <style>body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+}
+
+button[type="submit"] {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #3e8e41;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+li span {
+    flex-grow: 1;
+    font-size: 16px;
+}
+
+li button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    background-color: #f44336;
+    color: white;
+    cursor: pointer;
+}
+
+li button:hover {
+    background-color: #cc2e2e;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Todo List</h1>
+        <form id="form">
+            <input type="text" id="input" placeholder="Add new todo">
+            <button type="submit">Add</button>
+        </form>
+        <ul id="list"></ul>
+    </div>
+    <script>
+        const form = document.querySelector('#form');
+const input = document.querySelector('#input');
+const list = document.querySelector('#list');
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const text = input.value.trim();
+    if (text !== '') {
+        const li = document.createElement('li');
+        const span = document.createElement('span');
+        span.textContent = text;
+        const button = document.createElement('button');
+        button.textContent = 'Delete';
+        button.addEventListener('click', function() {
+            li.remove();
+        });
+        li.appendChild(span);
+        li.appendChild(button);
+        list.appendChild(li);
+        input.value = '';
+    }
+});
+
+    </script>
+</body>
+</html>
